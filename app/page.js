@@ -1,19 +1,16 @@
 import Image from 'next/image'
 import getStripe from '@/utils/get-stripe'
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
-import { Typography, Container, ToolBar, Button, Head, AppBar } from '@mui/material'
+import { Typography, Container, Toolbar, Button, AppBar } from '@mui/material'
 
 
 export default function Home() {
+  return (
     <Container maxWidth="lg">
-      <Head>
-        <title>Flashcard Saas</title>
-        <meta name="description" content="Create flashcard from your text" />
-      </Head>
 
       <AppBar position="static">
-        <ToolBar>
-          <Typography variant = "h6" style={{flexgrow: 1}}>Flashcard SaaS</Typography>
+        <Toolbar>
+          <Typography variant="h6" style={{flexGrow: 1}}>Flashcard SaaS</Typography>
           <SignedOut>
             <Button>Log In</Button>
             <Button>Sign Up</Button>
@@ -21,7 +18,8 @@ export default function Home() {
           <SignedIn>
             <UserButton />
           </SignedIn>
-        </ToolBar>
+        </Toolbar>
       </AppBar>
     </Container>
+  );
 }

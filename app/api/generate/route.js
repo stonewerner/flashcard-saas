@@ -44,3 +44,26 @@ export async function POST(req) {
 
     return NextResponse.json(flashcards.flashcard)
 }
+
+//chatgpt:
+/*
+import OpenAI from 'openai';
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+export async function POST(req) {
+    const data = await req.text();
+
+    const completion = await openai.Completion.create({
+        model: "gpt-4",
+        prompt: [systemPrompt, data],
+        max_tokens: 150,
+    });
+
+    const flashcards = JSON.parse(completion.choices[0].text);
+
+    return NextResponse.json(flashcards.flashcards);
+}
+*/
