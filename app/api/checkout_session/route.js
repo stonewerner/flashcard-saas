@@ -3,7 +3,9 @@ import Stripe from 'stripe'
 const formatAmountForStripe = (amount) => {
     return Math.round(amount * 100)
    }
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+    apiVersion: '2023-10-16', // Use the latest API version
+  });
 
 
 export async function POST(req) {
@@ -28,11 +30,11 @@ export async function POST(req) {
               },
             ],
             success_url: `${req.headers.get(
-              'Referer',
-            )}result?session_id={CHECKOUT_SESSION_ID}`,
+              'origin',
+            )}/result?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${req.headers.get(
-              'Referer',
-            )}result?session_id={CHECKOUT_SESSION_ID}`,
+              'origin',
+            )}/result?session_id={CHECKOUT_SESSION_ID}`,
           }
           
           const checkoutSession = await stripe.checkout.sessions.create(params)
